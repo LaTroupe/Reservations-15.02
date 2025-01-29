@@ -34,7 +34,7 @@
                 fetch("https://script.google.com/macros/s/AKfycbyWdcYiJK3mvZQVmcOomP2GJsNYCnNvFqXHbyXf0T2NSb3Pc99iBr4HebfOdlVoLuG8cA/exec", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ name, email })  // Envoi les données sous forme JSON
+                    body: JSON.stringify({ name: "Test", email:"tests@fff.com" })  // Envoi les données sous forme JSON
                 })
                 .then(response => response.text())
                 .then(data => {
