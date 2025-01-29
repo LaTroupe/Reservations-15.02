@@ -31,7 +31,7 @@
             console.log("Email:", email);  // Affiche l'email dans la console
 
             if (name && email) {
-                fetch("https://script.google.com/macros/s/AKfycbweCQZXeJ9Xuao-2femYlorQVB4DwfHaLMIHiYuESx8Uf3dqRcbf3hnrzZrRuQ_if_qPA/exec", {
+                fetch("https://script.google.com/macros/s/AKfycbyWdcYiJK3mvZQVmcOomP2GJsNYCnNvFqXHbyXf0T2NSb3Pc99iBr4HebfOdlVoLuG8cA/exec", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ name, email })  // Envoi les données sous forme JSON
