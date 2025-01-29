@@ -45,9 +45,6 @@
                     document.getElementById("reservations").appendChild(reservationDiv);
                     document.getElementById("reservationForm").reset();
                 })
-                .catch(error => {
-                    console.error("Erreur lors de l'envoi:", error);
-                });
             } else {
                 console.log("Nom et email requis.");
             }
