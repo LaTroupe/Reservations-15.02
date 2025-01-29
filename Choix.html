@@ -104,10 +104,10 @@
                 }
 
             } catch (error) {
-                document.getElementById('result').innerHTML = `
-                    <div style="color: red; margin: 20px 0;">
-                        ❌ Erreur : ${error.message}
-                    </div>
+  document.getElementById('result').innerHTML = `
+    <div style="color: red; margin: 20px 0;">
+      ❌ Erreur : ${error.message || "Problème de communication avec le serveur"}
+    </div>
                 `;
             }
         });
