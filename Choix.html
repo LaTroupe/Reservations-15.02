@@ -29,12 +29,12 @@
 
             console.log("Nom:", name);  // Affiche le nom dans la console
             console.log("Email:", email);  // Affiche l'email dans la console
-            
+
             if (name && email) {
                 fetch("https://script.google.com/macros/s/AKfycbweCQZXeJ9Xuao-2femYlorQVB4DwfHaLMIHiYuESx8Uf3dqRcbf3hnrzZrRuQ_if_qPA/exec", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ name, email })
+                    body: JSON.stringify({ name, email })  // Envoi les données sous forme JSON
                 })
                 .then(response => response.text())
                 .then(data => {
@@ -46,12 +46,13 @@
                     document.getElementById("reservationForm").reset();
                 })
                 .catch(error => {
-                    console.error("Erreur lors de l'envoi:", error));
-             });
-               } else {
-        console.log("Nom et email requis.");
+                    console.error("Erreur lors de l'envoi:", error);
+                });
+            } else {
+                console.log("Nom et email requis.");
             }
         });
     </script>
 </body>
 </html>
+
