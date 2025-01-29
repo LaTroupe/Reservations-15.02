@@ -21,35 +21,34 @@
     <h2>Réservations confirmées</h2>
     <div id="reservations"></div>
 
-    <script>
+   <script>
         document.getElementById("reservationForm").addEventListener("submit", function(event) {
             event.preventDefault();
-            let name = document.getElementById("name").value;
-            let email = document.getElementById("email").value;
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
 
-            console.log("Nom:", name);  // Affiche le nom dans la console
-            console.log("Email:", email);  // Affiche l'email dans la console
+            const formData = new URLSearchParams({
+                name: name,
+                email: email,
+                timestamp: new Date().toISOString()
+            });
 
-            if (name && email) {
-                fetch("https://script.google.com/macros/s/AKfycbyWdcYiJK3mvZQVmcOomP2GJsNYCnNvFqXHbyXf0T2NSb3Pc99iBr4HebfOdlVoLuG8cA/exec", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ name, email })  // Envoi les données sous forme JSON
-                })
-                .then(response => response.text())
-                .then(data => {
-                    alert("Réservation confirmée !");
-                    let reservationDiv = document.createElement("div");
-                    reservationDiv.classList.add("reservation");
-                    reservationDiv.innerHTML = `<strong>${name}</strong> (${email})`;
-                    document.getElementById("reservations").appendChild(reservationDiv);
-                    document.getElementById("reservationForm").reset();
-                })
-            } else {
-                console.log("Nom et email requis.");
-            }
+            fetch("https://script.google.com/macros/s/AKfycbyWdcYiJK3mvZQVmcOomP2GJsNYCnNvFqXHbyXf0T2NSb3Pc99iBr4HebfOdlVoLuG8cA/exec", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: formData,
+                mode: 'no-cors'
+            })
+            .then(() => {
+                alert("Réservation confirmée !");
+                const reservationDiv = document.createElement("div");
+                reservationDiv.classList.add("reservation");
+                reservationDiv.innerHTML = `<strong>${name}</strong> (${email})`;
+                document.getElementById("reservations").appendChild(reservationDiv);
+                document.getElementById("reservationForm").reset();
+            })
+            .catch(error => console.error('Erreur:', error));
         });
     </script>
 </body>
 </html>
-
