@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réservation Théâtre</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+        form { max-width: 300px; margin: auto; }
+        input, button { width: 100%; margin: 5px 0; padding: 10px; }
+        .reservation { background: #f4f4f4; padding: 10px; margin: 10px auto; max-width: 300px; }
+    </style>
+</head>
+<body>
+    <h1>Réservez votre place</h1>
+    <form id="reservationForm">
+        <input type="text" id="name" placeholder="Votre nom" required>
+        <input type="email" id="email" placeholder="Votre email" required>
+        <button type="submit">Réserver</button>
+    </form>
+    <h2>Réservations confirmées</h2>
+    <div id="reservations"></div>
+
+    <script>
+        document.getElementById("reservationForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            
+            if (name && email) {
+                fetch("https://script.google.com/macros/s/AKfycbweCQZXeJ9Xuao-2femYlorQVB4DwfHaLMIHiYuESx8Uf3dqRcbf3hnrzZrRuQ_if_qPA/exec", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ name, email })
+                })
+                .then(response => response.text())
+                .then(data => {
+                    alert("Réservation confirmée !");
+                    let reservationDiv = document.createElement("div");
+                    reservationDiv.classList.add("reservation");
+                    reservationDiv.innerHTML = `<strong>${name}</strong> (${email})`;
+                    document.getElementById("reservations").appendChild(reservationDiv);
+                    document.getElementById("reservationForm").reset();
+                })
+                .catch(error => console.error("Erreur :", error));
+            }
+        });
+    </script>
+</body>
+</html>
