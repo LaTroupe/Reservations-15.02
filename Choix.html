@@ -26,6 +26,9 @@
             event.preventDefault();
             let name = document.getElementById("name").value;
             let email = document.getElementById("email").value;
+
+            console.log("Nom:", name);  // Affiche le nom dans la console
+            console.log("Email:", email);  // Affiche l'email dans la console
             
             if (name && email) {
                 fetch("https://script.google.com/macros/s/AKfycbweCQZXeJ9Xuao-2femYlorQVB4DwfHaLMIHiYuESx8Uf3dqRcbf3hnrzZrRuQ_if_qPA/exec", {
@@ -42,7 +45,11 @@
                     document.getElementById("reservations").appendChild(reservationDiv);
                     document.getElementById("reservationForm").reset();
                 })
-                .catch(error => console.error("Erreur :", error));
+                .catch(error => {
+                    console.error("Erreur lors de l'envoi:", error));
+             });
+               } else {
+        console.log("Nom et email requis.");
             }
         });
     </script>
